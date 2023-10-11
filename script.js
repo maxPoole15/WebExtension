@@ -1,6 +1,5 @@
 async function fetchData() {
 
-    const url = 'https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Boise&minDate=2023-10-11&maxDate=2023-10-18&page=1';
     const options = {
 	method: 'GET',
 	headers: {
@@ -9,9 +8,10 @@ async function fetchData() {
 	}
 };
 
-	const response = await fetch(url, options)
+	const response = await fetch('https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Boise&minDate=2023-10-11&maxDate=2023-10-18&page=1', options)
 	const result = await response.json()
 
 	console.log('record', result)
+    document.getElementById("concerts").innerHTML = result.data.map(item => item.name)
 }
 fetchData();
